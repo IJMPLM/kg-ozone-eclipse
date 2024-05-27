@@ -116,6 +116,24 @@
         <servlet-name>ExpandProduct</servlet-name>
         <url-pattern>/expand</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>com.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>BuyNow</servlet-name>
+        <servlet-class>com.BuyNowServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BuyNow</servlet-name>
+        <url-pattern>/buynow</url-pattern>
+    </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>productList</welcome-file>

@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="#cart-button">
+                <a href="cart.jsp">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
                 </a>
             </li>
@@ -98,14 +98,15 @@
 				<div class="price">₱ 100.00</div>
 				<div class="quantity-header">QUANTITY</div>
 				<form>
-					<div class="quantity-input">
-				    <button type="button" onclick="decreaseValue()" id="decrease">-</button>
-				    <input type="number" class="quantity" id="quantity" value="1" min="1"/>
-				    <button type="button" onclick="increaseValue()" id="increase">+</button>
-				    <div class="stock">Stock: 1</div>
-				</div>
-					<input id="addtocart-button" type="submit" value="ADD TO CART">
-					<input id="buynow-button" type="submit" value="BUY NOW">
+				    <div class="quantity-input">
+				        <button type="button" onclick="decreaseValue()" id="decrease">-</button>
+				        <input type="number" class="quantity" id="quantity" value="1" min="1" name="quantity"/>
+				        <button type="button" onclick="increaseValue()" id="increase">+</button>
+				        <div class="stock">Stock: 1</div>
+				    </div>
+				    <input type="hidden" id="productId" name="productId" value="<%= selectedProduct.get("id") %>">
+				    <input id="addtocart-button" type="submit" value="ADD TO CART">
+				    <input id="buynow-button" type="submit" value="BUY NOW">
 				</form>
 			</div>
 </div>
@@ -114,6 +115,7 @@
 
 
 <script>
+//quantity side buttons
 function decreaseValue() {
     var value = parseInt(document.getElementById('quantity').value, 10);
     value = isNaN(value) ? 1 : value;
@@ -128,7 +130,38 @@ function increaseValue() {
     value++;
     document.getElementById('quantity').value = value;
 }
+
+//make target of form action dynamic
+window.onload = function() {
+    document.getElementById('addtocart-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        var form = this.closest('form');
+        form.action = 'addtocart';
+        form.method = 'POST';
+        form.submit();
+    });
+
+    document.getElementById('buynow-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        var form = this.closest('form');
+        form.action = 'buynow';
+        form.method = 'POST';
+        form.submit();
+    });
+};
 </script>
+
+<%
+    String message = (String) session.getAttribute("message");
+    if (message != null) {
+        session.removeAttribute("message"); // remove the attribute so it doesn't get displayed on every page
+%>
+        <script>
+            alert('<%= message %>');
+        </script>
+<%
+    }
+%>
 </body>
 
 	
