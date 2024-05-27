@@ -1,0 +1,75 @@
+/* Section2 - Products*/
+.Products {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    background: #262626;
+   
+}
+
+
+#brandpreview{
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #FFF;
+
+text-align: center;
+font-family: "Julius Sans One";
+font-size: 45px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    margin-bottom: 10px;
+}
+
+#brand-expand{
+    color: #FFF;
+    font-family: "Julius Sans One";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#brand-expand {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.product-section {
+	display: flex;
+	flex-direction: column;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.product-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-item {
+    text-align: center;
+    margin: 50px;
+}
+
+.product-item img {
+    max-width: 400px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.flavor {
+    color: #FFF;
+    text-align: center;
+    font-family: "Julius Sans One";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

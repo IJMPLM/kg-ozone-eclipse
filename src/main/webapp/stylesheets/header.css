@@ -1,0 +1,473 @@
+/*header*/
+header {
+    background: black;
+    width: 100%;
+	position: fixed;
+    height: 132px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+    position: sticky;
+    top: 0;
+}
+
+
+/*header - search*/
+
+#search-submenu {
+    position: absolute;
+    top: 100%;
+    width: 400px;
+    height: 1090px;
+    right: 0;
+    background-color: #3D3B3B;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+#search-submenu{
+    display: flex;
+    justify-content: center; 
+
+}
+
+#search-bar{
+    margin-top: 20px;
+
+}
+
+#search-input {
+    width: 175px; 
+    height: 42px;
+    background-color: #FFFCFC;
+    border: 8px solid #F1E6E6;
+    padding: 10px;
+    display: inline-block; 
+    vertical-align: middle; 
+
+    color: black ;
+font-size: 18px;
+text-align: center;
+font-family: Rubik;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+#search-submit {
+    background-color: #F1E6E6;
+    border: 8px solid #F1E6E6;
+    padding: px;
+    height: 42px;
+    width: 100px; 
+    margin-left: 5px; 
+    text-align: center;
+font-family: Rubik;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+#search-submit:hover{
+    color: #a2a2a2;
+    cursor: pointer;
+}
+
+#product-list{
+    text-align: center;
+    color: white ;
+    font-size: 18px;
+    text-align: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#search-result {
+    display: none;
+}
+
+.search-result-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 280px;
+    height: 75px;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.search-result-item img{
+    margin-right: 10px;
+}
+
+#product-list-text{
+    text-align: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: white;
+}
+
+
+/*header - cart*/
+#cart-submenu {
+    position: absolute;
+    top: 100%;
+    width: 400px;
+    height: 1090px;
+    right: 0;
+    background-color: #3D3B3B;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+#cart-delete-button {
+    background-color: #625f5f;
+    padding: 10px;
+    width: 70px;
+    height: 30px;
+    margin-top: 10px;
+    position: absolute;
+    right: 10px;
+    margin-bottom: 10px;
+    text-align: center; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: #ffffff;
+    font-family: "Julius Sans One";
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#cart-delete-button:hover{
+    cursor: pointer;
+    background-color: #777272;
+}
+
+
+
+
+#cart-products-rectangle {
+    display: flex;
+    align-items: center;
+    background-color: #625f5f;
+    height: 150px;
+    width: 400px;
+    margin-top: 60px;
+    position: relative; 
+}
+
+#product-container {
+    position: absolute; 
+    right: 10px; 
+    top: 85%;
+    transform: translateY(-50%); 
+    font-family: "Julius Sans One";
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 12px;
+}
+
+
+#select-product-box {
+    height: 10px;
+    margin-right: 10px; 
+    margin-left: 10px;
+}
+
+#cart-products-picture img {
+    height: 130px;
+    margin-right: 10px; 
+}
+
+#product-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#brand-name,
+#flavor-name,
+#price-name {
+    color: #FFF;
+    font-family: "Julius Sans One";
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+  
+}
+
+#brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: -65px;
+    margin-left: 20px;
+    
+    
+}
+
+#flavor-name {
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: -35px;
+
+}
+
+#price-name {
+    font-size: 16px;
+    margin-left: 20px;
+   margin-top: 40px ;
+}
+
+
+
+
+#product-container {
+    display: flex;
+    align-items: center;
+}
+
+#product-count {
+    background-color: white;
+    width: 35px;
+    text-align: center;
+}
+
+
+button {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#product-count {
+    margin: 0 3px;
+    font-size: 20px;
+    height: 28px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+
+
+#checkout-button {
+    position: absolute;
+    bottom: 275px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+
+@media (min-height: 1000px) {
+    #checkout-button {
+        bottom: 50px; 
+    }
+}
+
+.checkout-text-box {
+    width: 225px;
+    height: 42px;
+    background-color: #FFFCFC;
+    border: 8px solid #F1E6E6;
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.checkout-text-box:hover {
+    cursor: pointer;
+    background-color: #b9b8b8;
+    border: 8px solid #7a7a7a;
+  
+}
+
+.checkout-text-box h1 {
+    color: #090909;
+    font-family: "Julius Sans One", sans-serif;
+    font-size: 16px;
+    font-weight: 1000;
+    margin: 0; 
+}
+
+
+/*header - user*/
+
+
+#user-submenu {
+    left: 1720px;
+    opacity: 0;
+    position: absolute;
+    top: 132px; 
+    visibility: hidden;
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    width: 400px;
+    height: 194px;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+}
+
+#user-submenu-customer,
+#user-submenu-seller {
+    width: 100%; 
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Julius Sans One";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+#user-submenu-customer {
+    background: #676262;
+    color: white;
+    height: 97px;
+    width: 400px;
+}
+
+#user-submenu-seller {
+    background: #FFCD38;
+    color: black; 
+    height: 97px;
+    width: 400px;
+}
+
+#user-submenu-seller:hover {
+    background: #d6ac2e;
+    height: 97px;
+    width: 400px;
+    cursor: pointer;
+}
+
+#user-submenu-seller a {
+    color: black; 
+}
+
+li:hover > #user-submenu {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+header #logo-button {
+    margin-left: -2rem;
+
+}
+
+
+header nav ul {
+    display:flex;
+    
+}
+nav ul li .testing {
+    margin-right: 55px;
+}
+nav ul li .active {
+   margin-left: 350px;
+}
+header nav ul li a {
+    display: flex;
+    color: white;
+    padding: 5px ;
+    margin: 0 10px -16px;
+    border: 3px solid transparent;
+    text-transform: uppercase;
+	font-family: "Julius Sans One";
+font-size: 30px;
+font-style: normal;
+line-height: normal;
+    transition: 0.2s;
+}
+header nav ul li a:hover,
+header nav ul li a.active {
+    border-bottom-color: white;
+   
+}
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    margin: 5px 0;
+    background: #000;
+}
+@media only screen and (max-width: 900px) {
+    header {
+        padding: 0 30px;
+    }
+	
+	section{
+		padding: 2rem;
+	}
+}
+@media only screen and (max-width: 700px) {
+    .hamburger {
+        display: block;
+    }
+    header nav {
+        position: absolute;
+        width: 100%;
+        left: -100%;
+        top: 70px;
+        width: 100%;
+        background: #fff;
+        padding: 30px;
+        transition: 0.3s;
+    }
+    header #nav_check:checked ~ nav {
+        left: 0;
+    }
+    header nav ul {
+        display: block;
+    }
+    header nav ul li a {
+        margin: 5px 0;
+    }	
+}
+
+@media(max-width: 500px) {
+	.home{
+        display: block;
+    }
+	.home .content h3{
+		font-size: 1.5rem;
+	}
+}
