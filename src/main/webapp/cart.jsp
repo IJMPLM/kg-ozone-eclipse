@@ -99,7 +99,7 @@
 </div>
 </div>
 
-<form action="buynow" method="post">
+<form action="checkout" method="post">
     <footer id="checkout-footer">
         <div class="left-section">
         </div>

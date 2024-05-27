@@ -53,19 +53,23 @@
 			  </select>
 				</div>
 	</div>
+	
 	<%
-	    request.getSession();
-	    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
-	    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
-	%>
-	<div id="right">
-	    <%
-	        if (productList != null && orderMap != null) {
-	            for (HashMap<String, String> product : productList) {
-	                String productId = product.get("id");
-	                if (orderMap.containsKey(productId)) {
-	                    int quantity = orderMap.get(productId);
-	    %>
+    request.getSession();
+    HashMap<String, Integer> buyNowProduct = (HashMap<String, Integer>) session.getAttribute("buyNowProduct");
+    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
+    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
+%>
+<div id="right">
+    <%
+        if (productList != null) {
+            if (buyNowProduct != null) {
+                // Display the "Buy Now" product
+                String productId = buyNowProduct.keySet().iterator().next();
+                int quantity = buyNowProduct.get(productId);
+                for (HashMap<String, String> product : productList) {
+                    if (product.get("id").equals(productId)) {
+    %>
                         <div class="product">
                             <img src="<%= product.get("img_thumbnail") %>" alt="Product image">
                             <div class="product-info">
@@ -76,12 +80,33 @@
                                 <div class="product-text">Price: <%= product.get("price") %></div>
                             </div>
                         </div>
-        <%
+    <%
+                    }
+                }
+            } else if (orderMap != null) {
+                // Display all products in the orderMap
+                for (HashMap<String, String> product : productList) {
+                    String productId = product.get("id");
+                    if (orderMap.containsKey(productId)) {
+                        int quantity = orderMap.get(productId);
+    %>
+                        <div class="product">
+                            <img src="<%= product.get("img_thumbnail") %>" alt="Product image">
+                            <div class="product-info">
+                                <div class="product-text"><%= product.get("brand") %></div>
+                                <div class="product-text"><%= product.get("name") %></div>
+                                <br><br>
+                                <div class="product-text">Quantity: <%= quantity %></div>
+                                <div class="product-text">Price: <%= product.get("price") %></div>
+                            </div>
+                        </div>
+    <%
                     }
                 }
             }
-        %>
-    </div>
+        }
+    %>
+</div>
 </div>
 <script>
 				// Function to update label text for both inputs

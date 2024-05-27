@@ -134,6 +134,15 @@
         <servlet-name>BuyNow</servlet-name>
         <url-pattern>/buynow</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>com.CheckoutCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>productList</welcome-file>

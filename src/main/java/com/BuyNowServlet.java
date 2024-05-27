@@ -17,23 +17,19 @@ public class BuyNowServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession orderSession = request.getSession();
 
-        // Get the order map from the session
-        HashMap<String, Integer> orderMap = (HashMap<String, Integer>) orderSession.getAttribute("orderMap");
-        if (orderMap == null) {
-            // If the order map doesn't exist, create a new one
-            orderMap = new HashMap<>();
-        }
+        // Remove the orderMap from the session
+        orderSession.removeAttribute("orderMap");
 
+        // Get the product ID and quantity from the request
         String productId = request.getParameter("productId");
-        if (productId != null) {
-            // If a single product ID is provided, add it to the order map
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            orderMap.put(productId, quantity);
-            System.out.println("Order Added:" + productId + " Quantity: " + quantity);
-        }
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        // Store the order map in the session
-        orderSession.setAttribute("orderMap", orderMap);
+        // Create a new map for the "Buy Now" product
+        HashMap<String, Integer> buyNowProduct = new HashMap<>();
+        buyNowProduct.put(productId, quantity);
+
+        // Store the "Buy Now" product in the session
+        orderSession.setAttribute("buyNowProduct", buyNowProduct);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/orderform.jsp");
         dispatcher.forward(request, response);
