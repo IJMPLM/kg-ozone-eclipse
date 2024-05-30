@@ -143,6 +143,23 @@
         <servlet-name>Checkout</servlet-name>
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Nav</servlet-name>
+        <servlet-class>com.NavServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Nav</servlet-name>
+        <url-pattern>/nav</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    <context-param>
+    <param-name>file-upload-path</param-name>
+    <param-value>D:/User Data/eclipse-workspace/kg-ozone-eclipse</param-value>
+	</context-param>
   
   <welcome-file-list>
     <welcome-file>productList</welcome-file>

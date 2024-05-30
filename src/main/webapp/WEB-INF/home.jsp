@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li>
-                <a href="#cart-button">
+                <a href="cart.jsp">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
                 </a>
             </li>
@@ -120,32 +120,25 @@
 
 <section class="About" id="about-button">
     <div class="content">
-        <div id="rectangle1"></div>
-            <div id="rectangle1-2"></div>
-            <h6 id="faq">FAQ</h6>
-            <p id="quest">
-                1. Do we accept COD? Yes, we are accepting COD<br>
-                2. Do we ship nationwide? Yes, to any part of the Philippines.<br>
-                3. Do we accept returned items? No, if the seal is broken.<br>
-            </p>
-            <div class="textbox-container">
-                <label for="comment">Comment</label>
-                <textarea id="comment" class="comment" placeholder="Type your comment here..."></textarea>
-            </div>
-            <h6 id="rate">Rate Us</h6>
-            <div class="star-rating">
-                <input type="radio" id="star5" name="rating" value="5">
-                <label for="star5" title="5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4" title="4 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3" title="3 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2" title="2 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1" title="1 star"></label>
-            </div>
-            <div id="rec1"></div>
+        <h6 id="faq">FAQ</h6>
+        <p id="quest">
+            1. Do we accept COD? Yes, we are accepting COD<br>
+            2. Do we ship nationwide? Yes, to any part of the Philippines.<br>
+            3. Do we accept returned items? No, if the seal is broken<br>
+        </p>
+        <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5" title="5 stars"></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4" title="4 stars"></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3" title="3 stars"></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2" title="2 stars"></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1" title="1 star"></label>
+        </div>
+        <div id="rec1"></div>
         <div id="rec2"></div>
         <h5>About Us</h5>
         <p id="about">
@@ -167,6 +160,16 @@
         <h6 id="last">OZONE ©2024 Made by US THANk YOU</h6>
     </div>
 </section>
-
+<script>
+        window.onload = function() {
+            var section = '<%= request.getAttribute("section") %>';
+            if (section && section !== 'null') {
+                var element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView();
+                }
+            }
+        };
+    </script>
 </body>
 </html>

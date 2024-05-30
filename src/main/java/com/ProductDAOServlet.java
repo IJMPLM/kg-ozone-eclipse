@@ -60,6 +60,7 @@ public class ProductDAOServlet extends HttpServlet {
                         product.put("category", resultSet.getString("category"));
                         product.put("description", resultSet.getString("description"));
                         product.put("price", resultSet.getString("price"));
+                        product.put("stock", resultSet.getString("stock"));
                         product.put("img_thumbnail", resultSet.getString("img_thumbnail"));
                         for (int i = 1; i <= columnsNumber; i++) {
                             String columnName = rsmd.getColumnName(i);

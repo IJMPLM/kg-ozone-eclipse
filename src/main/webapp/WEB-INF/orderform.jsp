@@ -23,22 +23,55 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One:wght@400&display=swap"/>
 </head>
 <body>
+	<%
+	    request.getSession();
+	    HashMap<String, Integer> buyNowProduct = (HashMap<String, Integer>) session.getAttribute("buyNowProduct");
+	    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
+	    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
+	%>
 <div class="content">
+	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 	<div id="left">
+	<form id="orderForm" action="order" method="post" enctype="multipart/form-data">
+		<%
+		    if (productList != null) {
+		        if (buyNowProduct != null) {
+		            // Create hidden inputs for the "Buy Now" product
+		            String productId = buyNowProduct.keySet().iterator().next();
+		            int quantity = buyNowProduct.get(productId);
+		%>
+		            <input type="hidden" name="productId" value="<%= productId %>">
+		            <input type="hidden" name="quantity" value="<%= quantity %>">
+		<%
+		        } else if (orderMap != null) {
+		            // Create hidden inputs for all products in the orderMap
+		            for (HashMap<String, String> product : productList) {
+		                String productId = product.get("id");
+		                if (orderMap.containsKey(productId)) {
+		                    int quantity = orderMap.get(productId);
+		%>
+		                    <input type="hidden" name="productId" value="<%= productId %>">
+		                    <input type="hidden" name="quantity" value="<%= quantity %>">
+		<%
+		                }
+		            }
+		        }
+		    }
+		%>
 	        <div class="form-text">name</div>
-	        <input class="type-name" type="text" style="width: 1000px;" placeholder="Enter Name..."/>
+	        <input class="type-name" type="text" name="name" style="width: 1000px;" placeholder="Enter Name..."/>
 	        <div class="form-text">contact</div>
-	        <input class="type-contact" type="text" style="width: 1000px;" placeholder="Enter Contact Number..."/>
+	        <input class="type-contact" type="text" name="contact" style="width: 1000px;" placeholder="Enter Contact Number..."/>
 	        <div class="form-text">valid id</div>
 			<input type="file" name="validId" id="validId" class="input-file" />
 			<label for="validId" class="file-label" id="file-label">Choose a file</label>
 				<div class="space">
 	        <div class="form-text">ADDRESS</div>
-	        <input class="type-address" type="text" style="width: 1000px;" placeholder="Enter Address..."/>
+	        <input class="type-address" type="text" name="address" style="width: 1000px;" placeholder="Enter Address..."/>
 	        <div class="form-text">REGION</div>
-	        <input class="type-region" type="text" style="width: 1000px;" placeholder="Enter Region..."/>
+	        <input class="type-region" type="text" name="region" style="width: 1000px;" placeholder="Enter Region..."/>
 	        <div class="form-text">BARANGAY</div>
-	        <input class="type-barangay" type="text" style="width: 1000px;" placeholder="Enter Barangay..."/>
+	        <input class="type-barangay" type="text" name="barangay" style="width: 1000px;" placeholder="Enter Barangay..."/>
 	        <div class="form-text">PAYMENT RECEIPT</div>
 
 			<input type="file" name="receipt" id="receipt" class="input-file" />
@@ -46,20 +79,15 @@
 
 	        <div class="form-text">COURIER</div>
 			<select name="courier" id="courier">
-				<option value="volvo">J&T Express</option>
-				<option value="saab">Ninja Van</option>
-				<option value="opel">Entrego</option>
-				<option value="audi">Lalamove</option>
+				<option value="J&T Express">J&T Express</option>
+				<option value="Ninja Van">Ninja Van</option>
+				<option value="Entrego">Entrego</option>
+				<option value="Lalamove">Lalamove</option>
 			  </select>
 				</div>
+			<input type="submit" value="ORDER" class="order-button">
+		</form>
 	</div>
-	
-	<%
-    request.getSession();
-    HashMap<String, Integer> buyNowProduct = (HashMap<String, Integer>) session.getAttribute("buyNowProduct");
-    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
-    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
-%>
 <div id="right">
     <%
         if (productList != null) {

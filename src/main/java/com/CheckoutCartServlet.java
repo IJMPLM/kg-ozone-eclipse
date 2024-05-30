@@ -17,7 +17,7 @@ public class CheckoutCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession orderSession = request.getSession();
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({ "unchecked", "unused" })
         HashMap<String, Integer> orderMap = (HashMap<String, Integer>) orderSession.getAttribute("orderMap");
 
         // Forward the request to the JSP page within the WEB-INF directory

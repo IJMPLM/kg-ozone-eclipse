@@ -25,9 +25,9 @@
     <input type="checkbox" id="nav_check" hidden>
     <nav>
         <ul>
-            <li><a href="productList" class="active">Home</a></li>
-            <li><a href="#" onclick="history.back()">Products</a></li>
-            <li><a href="#" onclick="history.back()">About</a></li>
+            <li><a href="nav?section=home-button">Home</a></li>
+            <li><a href="nav?section=products-button">Products</a></li>
+            <li><a href="nav?section=about-button">About</a></li>
             <li>
                 <a href="#search-button">
                     <div class="Search"><img src="<%= request.getContextPath() %>/website-images/search.png" alt="search"></div>
@@ -57,7 +57,7 @@
 	HashMap<String, String> selectedProduct = (HashMap<String, String>) request.getAttribute("selectedProduct"); 
 %>
 <section class = "content">
-<div class="back-button" id="back-button" onclick="history.back()"> <img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
+<div class="back-button" id="back-button"> <a href="nav?section=products-button"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></a> </div>
 <div class="container">
     <div id="div1">
     	<div id="images">
@@ -80,35 +80,28 @@
     	</div>
     </div>
     <div id="div2">
-				<div class="brand" id="product-name">Black Elite</div>
-				<div></div>
-				<div class="flavor">Bazook Gum</div>
-				<div class="description-header">DESCRIPTION</div>
-				<div class="description">
-					<p id="product-description">The Black Elite is a premium
-					e-liquid that offers a rich and satisfying vaping experience. It
-					has a bold and intense flavor that is perfect for those who enjoy a
-					strong and robust vape. The Black Elite is made with high-quality
-					ingredients and is designed to provide a smooth and satisfying vape
-					every time. It is available in a variety of nicotine strengths to
-					suit your individual preferences. Try the Black Elite today and
-					experience the ultimate vaping pleasure.</p>
-				</div>
-				<div class="price-header">PRICE</div>
-				<div class="price">₱ 100.00</div>
-				<div class="quantity-header">QUANTITY</div>
-				<form>
-				    <div class="quantity-input">
-				        <button type="button" onclick="decreaseValue()" id="decrease">-</button>
-				        <input type="number" class="quantity" id="quantity" value="1" min="1" name="quantity"/>
-				        <button type="button" onclick="increaseValue()" id="increase">+</button>
-				        <div class="stock">Stock: 1</div>
-				    </div>
-				    <input type="hidden" id="productId" name="productId" value="<%= selectedProduct.get("id") %>">
-				    <input id="addtocart-button" type="submit" value="ADD TO CART">
-				    <input id="buynow-button" type="submit" value="BUY NOW">
-				</form>
-			</div>
+	    <div class="brand" id="product-name"><%= selectedProduct.get("brand") %></div>
+	    <div></div>
+	    <div class="flavor"><%= selectedProduct.get("name") %></div>
+	    <div class="description-header">DESCRIPTION</div>
+	    <div class="description">
+	        <p id="product-description"><%= selectedProduct.get("description") %></p>
+	    </div>
+	    <div class="price-header">PRICE</div>
+	    <div class="price">₱ <%= selectedProduct.get("price") %></div>
+	    <div class="quantity-header">QUANTITY</div>
+	    <form>
+	        <div class="quantity-input">
+	            <button type="button" onclick="decreaseValue()" id="decrease">-</button>
+	            <input type="number" class="quantity" id="quantity" value="1" min="1" name="quantity"/>
+	            <button type="button" onclick="increaseValue()" id="increase">+</button>
+	            <div class="stock">Stock: <%= selectedProduct.get("stock") %></div>
+	        </div>
+	        <input type="hidden" id="productId" name="productId" value="<%= selectedProduct.get("id") %>">
+	        <input id="addtocart-button" type="submit" value="ADD TO CART">
+	        <input id="buynow-button" type="submit" value="BUY NOW">
+	    </form>
+	</div>
 </div>
 </section>
 
@@ -126,8 +119,11 @@ function decreaseValue() {
 
 function increaseValue() {
     var value = parseInt(document.getElementById('quantity').value, 10);
+    var stock = parseInt('<%= selectedProduct.get("stock") %>', 10);
     value = isNaN(value) ? 1 : value;
-    value++;
+    if (value < stock) {
+        value++;
+    }
     document.getElementById('quantity').value = value;
 }
 

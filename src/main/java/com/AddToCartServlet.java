@@ -21,7 +21,8 @@ public class AddToCartServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         // Get the order map from the session
-        HashMap<String, Integer> orderMap = (HashMap<String, Integer>) orderSession.getAttribute("orderMap");
+        @SuppressWarnings("unchecked")
+		HashMap<String, Integer> orderMap = (HashMap<String, Integer>) orderSession.getAttribute("orderMap");
         if (orderMap == null) {
             // If the order map doesn't exist, create a new one
             orderMap = new HashMap<>();
