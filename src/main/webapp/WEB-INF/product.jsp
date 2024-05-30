@@ -155,6 +155,7 @@ window.onload = function() {
         <script>
             alert('<%= message %>');
         </script>
+        <% request.removeAttribute("message"); %>
 <%
     }
 %>

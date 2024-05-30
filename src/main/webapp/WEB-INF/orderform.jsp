@@ -23,6 +23,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One:wght@400&display=swap"/>
 </head>
 <body>
+	<% if (request.getAttribute("errorMessage") != null) { %>
+	    <script>
+	        alert("<%= request.getAttribute("errorMessage") %>");
+	    </script>
+	    <% request.removeAttribute("errorMessage"); %>
+	<% } %>
 	<%
 	    request.getSession();
 	    HashMap<String, Integer> buyNowProduct = (HashMap<String, Integer>) session.getAttribute("buyNowProduct");

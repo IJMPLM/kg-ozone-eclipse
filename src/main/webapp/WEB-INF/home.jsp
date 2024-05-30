@@ -26,6 +26,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Kufam:ital,wght@0,400..900;1,400..900&family=Rozha+One&display=swap" rel="stylesheet"> 
 </head>
 <body>
+	<% if (request.getAttribute("orderSuccess") != null) { %>
+	    <script>
+	        alert("<%= request.getAttribute("orderSuccess") %>");
+	    </script>
+	    <% request.removeAttribute("orderSuccess"); %>
+	<% } %>
 	<header>
 	<div id="logo-button">
         <img src="<%= request.getContextPath() %>/website-images/logo.png" alt="Logo">

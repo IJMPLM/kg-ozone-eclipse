@@ -34,6 +34,7 @@ public class ProductDAOServlet extends HttpServlet {
         Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        
         try {
             Context initContext;
             try {
@@ -41,6 +42,12 @@ public class ProductDAOServlet extends HttpServlet {
                 Context envContext = (Context) initContext.lookup("java:/comp/env");
                 BasicDataSource dataSource = (BasicDataSource) envContext.lookup("jdbc/kg-ozone");
                 HttpSession session = request.getSession();
+                String orderSuccessMessage = (String) session.getAttribute("orderSuccess");
+                if (orderSuccessMessage != null) {
+                    request.setAttribute("orderSuccess", orderSuccessMessage);
+                    session.removeAttribute("orderSuccess"); // remove it from the session
+                }
+                
                 @SuppressWarnings("unchecked")
                 ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
 

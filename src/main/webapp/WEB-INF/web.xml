@@ -153,6 +153,15 @@
         <url-pattern>/nav</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>Order</servlet-name>
+        <servlet-class>com.CreateOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    
     
     
     
