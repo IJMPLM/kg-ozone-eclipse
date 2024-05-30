@@ -142,6 +142,13 @@
 </script>
 </head>
 <body>
+<header>
+	<nav>
+		<a href="inventory">Inventory</a>
+        <a href="orders">Orders</a>
+        <a href="sales">Sales</a>
+	</nav>
+</header>
  <button onclick="addProduct()">Add new product</button>
  <form action="commit" method="POST">
    <button type="submit">Save All Changes</button>

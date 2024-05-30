@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +23,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 @MultipartConfig
-@WebServlet(name = "Order", urlPatterns = {"/order"})
+@WebServlet(name = "CreateOrder", urlPatterns = {"/createorder"})
 public class CreateOrderServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/kg-ozone";
@@ -115,8 +117,10 @@ public class CreateOrderServlet extends HttpServlet {
 	            if (resultSet.next()) {
 	                id = resultSet.getInt("max_id") + 1; // Increment the maximum id
 	            }
+	            
+	            LocalDateTime orderDateTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 	         
-	            String orders = "INSERT INTO orders (order_id, name, contact, valid_id, address, region, barangay, receipt, courier, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	            String orders = "INSERT INTO orders (order_id, order_name, contact, valid_id, address, region, barangay, receipt, courier, status, order_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	            statement = conn.prepareStatement(orders);
 	            statement.setInt(1, id);
 	            statement.setString(2, name);
@@ -128,6 +132,7 @@ public class CreateOrderServlet extends HttpServlet {
 	            statement.setString(8, relativePathReceipt);
 	            statement.setString(9, courier);
 	            statement.setString(10, "pending");
+	            statement.setTimestamp(11, Timestamp.valueOf(orderDateTime));
 	            int rowsAffected = statement.executeUpdate();
 	            System.out.println(rowsAffected + " row(s) inserted into orders table.");
  

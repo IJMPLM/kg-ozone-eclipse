@@ -154,15 +154,22 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Order</servlet-name>
+        <servlet-name>CreateOrder</servlet-name>
         <servlet-class>com.CreateOrderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Order</servlet-name>
-        <url-pattern>/order</url-pattern>
+        <servlet-name>CreateOrder</servlet-name>
+        <url-pattern>/createorder</url-pattern>
     </servlet-mapping>
     
-    
+    <servlet>
+        <servlet-name>Orders</servlet-name>
+        <servlet-class>com.OrdersLoaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Orders</servlet-name>
+        <url-pattern>/orders</url-pattern>
+    </servlet-mapping>
     
     
     <context-param>
