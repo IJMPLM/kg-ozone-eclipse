@@ -171,6 +171,15 @@
         <url-pattern>/orders</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>Sales</servlet-name>
+        <servlet-class>com.SalesLoaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Sales</servlet-name>
+        <url-pattern>/sales</url-pattern>
+    </servlet-mapping>
+    
     
     <context-param>
     <param-name>file-upload-path</param-name>
