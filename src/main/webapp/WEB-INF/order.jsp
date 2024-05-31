@@ -31,7 +31,10 @@
             List<Order> orders = (List<Order>) request.getAttribute("orders");
             for (Order order : orders) {
             %>
-                <tr id="order_<%=order.getOrderId()%>" onclick="window.location.href='/orderopr?orderId=<%=order.getOrderId()%>'">
+                <form id="orderForm_<%=order.getOrderId()%>" action="orderopr" method="POST">
+                    <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
+                </form>
+                <tr id="order_<%=order.getOrderId()%>" onclick="submitForm(<%=order.getOrderId()%>)">
                     <td><%=order.getStatus()%></td>
                     <td><%=order.getOrderDate()%></td>
                     <td><%=order.getName()%></td>
@@ -51,5 +54,11 @@
             %>
         </table>
 	</section>
+	<script>
+        function submitForm(orderId) {
+            var form = document.getElementById('orderForm_' + orderId);
+            form.submit();
+        }
+    </script>
    	</body>
 </html>

@@ -180,6 +180,24 @@
         <url-pattern>/sales</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>OrderOperation</servlet-name>
+        <servlet-class>com.OrderOperationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderOperation</servlet-name>
+        <url-pattern>/orderopr</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdateOrderStatus</servlet-name>
+        <servlet-class>com.UpdateOrderStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderStatus</servlet-name>
+        <url-pattern>/updateOrderStatus</url-pattern>
+    </servlet-mapping>
+    
     
     <context-param>
     <param-name>file-upload-path</param-name>
