@@ -22,23 +22,33 @@ public class OrderOperationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("orderId");
         Order order = null;
-        String sql = "SELECT o.order_id, o.status, o.order_date, o.order_name, p.id, p.name, op.product_quantity, p.price " +
-                "FROM orders o " +
-                "JOIN orders_product op ON o.order_id = op.order_id " +
-                "JOIN product p ON op.product_id = p.id " +
-                "WHERE o.order_id = ?";
+        String sql = "SELECT o.order_id, o.status, o.order_date, o.order_name, o.order_name, o.contact, o.address, o.region, o.barangay, o.courier, p.id, p.name, op.product_quantity, p.price " +
+        	    "FROM orders o " +
+        	    "JOIN orders_product op ON o.order_id = op.order_id " +
+        	    "JOIN product p ON op.product_id = p.id " +
+        	    "WHERE o.order_id = ?";
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
             	statement.setInt(1, Integer.parseInt(orderId)); // Fix the SQL injection vulnerability
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-                        if (order == null) {
-                            int id = resultSet.getInt("order_id");
-                            String status = resultSet.getString("status");
-                            Timestamp orderDate = resultSet.getTimestamp("order_date");
-                            String name = resultSet.getString("order_name");
-                            order = new Order(id, status, orderDate.toLocalDateTime(), name);
-                        }
+                    	if (order == null) {
+                    	    int id = resultSet.getInt("order_id");
+                    	    String status = resultSet.getString("status");
+                    	    Timestamp orderDate = resultSet.getTimestamp("order_date");
+                    	    String name = resultSet.getString("order_name");
+                    	    String contact = resultSet.getString("contact");
+                    	    String address = resultSet.getString("address");
+                    	    String region = resultSet.getString("region");
+                    	    String barangay = resultSet.getString("barangay");
+                    	    String courier = resultSet.getString("courier");
+                    	    order = new Order(id, status, orderDate.toLocalDateTime(), name);
+                    	    order.setContact(contact);
+                    	    order.setAddress(address);
+                    	    order.setRegion(region);
+                    	    order.setBarangay(barangay);
+                    	    order.setCourier(courier);
+                    	}
                         int productId = resultSet.getInt("id");
                         String productName = resultSet.getString("name");
                         int quantity = resultSet.getInt("product_quantity");

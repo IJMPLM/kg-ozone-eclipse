@@ -42,6 +42,13 @@
             </select>
             <input type="submit" value="Update Status">
         </form>
+        <h2>Order ID: <%=order.getOrderId()%></h2>
+		<p>Name: <%=order.getName()%></p>
+		<p>Contact: <%=order.getContact()%></p>
+		<p>Address: <%=order.getAddress()%></p>
+		<p>Region: <%=order.getRegion()%></p>
+		<p>Barangay: <%=order.getBarangay()%></p>
+		<p>Courier: <%=order.getCourier()%></p>
         <table>
             <tr>
                 <th>Product Name</th>
