@@ -6,6 +6,11 @@
 <%
 	@SuppressWarnings("unchecked")
     ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
+	if (productList == null) {
+	    // The session is empty, redirect to the productDAOServlet
+	    response.sendRedirect("productDAOServlet");
+	    return;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -42,11 +47,6 @@
             <li><a href="#home-button" class="active">Home</a></li>
             <li><a href="#products-button">Products</a></li>
             <li><a href="#about-button">About</a></li>
-            <li>
-                <a href="#search-button">
-                    <div class="Search"><img src="<%= request.getContextPath() %>/website-images/search.png" alt="search"></div>
-                </a>
-            </li>
             <li>
                 <a href="cart.jsp">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
@@ -126,26 +126,13 @@
 
 <section class="About" id="about-button">
     <div class="content">
-        <h6 id="faq">FAQ</h6>
+       <div id="about-center">
+       	 <h6 id="faq">FAQ</h6>
         <p id="quest">
             1. Do we accept COD? Yes, we are accepting COD<br>
             2. Do we ship nationwide? Yes, to any part of the Philippines.<br>
             3. Do we accept returned items? No, if the seal is broken<br>
         </p>
-        <div class="star-rating">
-            <input type="radio" id="star5" name="rating" value="5">
-            <label for="star5" title="5 stars"></label>
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4" title="4 stars"></label>
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3" title="3 stars"></label>
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2" title="2 stars"></label>
-            <input type="radio" id="star1" name="rating" value="1">
-            <label for="star1" title="1 star"></label>
-        </div>
-        <div id="rec1"></div>
-        <div id="rec2"></div>
         <h5>About Us</h5>
         <p id="about">
             Welcome to KG Ozone, your go-to for affordable, top-notch vape gear. We're all about quality without the hefty price tag. Plus, we're serious about responsible vaping. We only sell to adults 21 and up, ensuring a safe and legal experience for all. Join us for premium vaping solutions that won't disappoint. Experience excellence, affordability, and responsibility with KG Ozone.
@@ -163,7 +150,8 @@
         <div class="icon-wrapper">
             <a href="https://www.youtube.com/@johnandreireyes2035" target="_blank"><img src="<%= request.getContextPath() %>/website-images/tiktok.png"></a>
         </div>
-        <h6 id="last">OZONE ©2024 Made by US THANk YOU</h6>
+        <h6 id="last">OZONE ©2024 Made by US THANK YOU</h6>
+       </div>
     </div>
 </section>
 <script>

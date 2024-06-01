@@ -59,32 +59,6 @@
     text-align: justify;
 }
 
-.star-rating {
-    direction: rtl;
-    display: inline-flex;
-    gap: 5px;
-    margin-bottom: 20px;
-}
-
-.star-rating input[type="radio"] {
-    display: none;
-}
-
-.star-rating label {
-    display: block;
-    width: 36px;
-    height: 36px;
-    background: url('star-empty.svg') no-repeat center center;
-    background-size: contain;
-    cursor: pointer;
-    position: relative;
-}
-
-.star-rating input[type="radio"]:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label {
-    background: url('star-filled.svg') no-repeat center center;
-    background-size: contain;
-}
-
 .icon-wrapper {
     display: inline-block; 
     margin-right: 20px;
@@ -108,3 +82,9 @@
     margin-bottom: 20px;
 }
 
+#about-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

@@ -16,7 +16,11 @@ public class AddToCartServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession orderSession = request.getSession();
-
+        if (orderSession == null) {
+            // The session is empty, redirect to the productDAOServlet
+            response.sendRedirect("productList");
+            return;
+        }
         String productId = request.getParameter("productId");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 

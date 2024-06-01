@@ -29,11 +29,6 @@
             <li><a href="nav?section=products-button">Products</a></li>
             <li><a href="nav?section=about-button">About</a></li>
             <li>
-                <a href="#search-button">
-                    <div class="Search"><img src="<%= request.getContextPath() %>/website-images/search.png" alt="search"></div>
-                </a>
-            </li>
-            <li>
                 <a href="cart.jsp">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
                 </a>
@@ -55,6 +50,11 @@
 <!-- CHECKOUT -->
 <%
 	HashMap<String, String> selectedProduct = (HashMap<String, String>) request.getAttribute("selectedProduct"); 
+   	if (selectedProduct == null) {
+    	 // The session is empty, redirect to the productDAOServlet
+    	 response.sendRedirect("nav?section=products-button");
+    	 return;
+   	}
 %>
 <section class = "content">
 <div class="back-button" id="back-button"> <a href="nav?section=products-button"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></a> </div>
@@ -67,16 +67,16 @@
 	            <% } %>
 	        </div>
 	        <div id="preview">
-	            <% if (selectedProduct.get("img1") != null) { %>
-	                <img src="<%= selectedProduct.get("img1") %>" class="preview-image" />
-	            <% } %>
-	            <% if (selectedProduct.get("img2") != null) { %>
-	                <img src="<%= selectedProduct.get("img2") %>" class="preview-image" />
-	            <% } %>
-	            <% if (selectedProduct.get("img3") != null) { %>
-	                <img src="<%= selectedProduct.get("img3") %>" class="preview-image" />
-	            <% } %>
-	        </div>
+			    <% if (selectedProduct.get("img1") != null && !selectedProduct.get("img1").contains("null")) { %>
+			        <img src="<%= selectedProduct.get("img1") %>" class="preview-image" />
+			    <% } %>
+			    <% if (selectedProduct.get("img2") != null && !selectedProduct.get("img2").contains("null")) { %>
+			        <img src="<%= selectedProduct.get("img2") %>" class="preview-image" />
+			    <% } %>
+			    <% if (selectedProduct.get("img3") != null && !selectedProduct.get("img3").contains("null")) { %>
+			        <img src="<%= selectedProduct.get("img3") %>" class="preview-image" />
+			    <% } %>
+			</div>
     	</div>
     </div>
     <div id="div2">

@@ -30,11 +30,6 @@
             <li><a href="#" onclick="history.back()">Products</a></li>
             <li><a href="#" onclick="history.back()">About</a></li>
             <li>
-                <a href="#search-button">
-                    <div class="Search"><img src="<%= request.getContextPath() %>/website-images/search.png" alt="search"></div>
-                </a>
-            </li>
-            <li>
                 <a href="#cart-button">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
                 </a>
@@ -57,6 +52,11 @@
 		request.getSession();
 	    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
 	    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
+	    if (productList == null) {
+            // The session is empty, redirect to the productDAOServlet
+            response.sendRedirect("productList");
+            return;
+        }
 	
 	    // Debug print statements
 	    System.out.println("Order Session: " + orderMap);

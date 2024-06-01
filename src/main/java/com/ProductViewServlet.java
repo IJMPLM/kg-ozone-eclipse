@@ -21,6 +21,11 @@ public class ProductViewServlet extends HttpServlet{
 		HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
+        if (productList == null) {
+            // The session is empty, redirect to the productDAOServlet
+            response.sendRedirect("productList");
+            return;
+        }
         HashMap<String, String> selectedProduct = null;
 
         for (HashMap<String, String> product : productList) {

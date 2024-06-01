@@ -78,9 +78,7 @@ body{
 .preview-image{
     flex: 1;
     width:100%;
-}
-
-#div2 {}
+    max-height:30%;
 
 .brand{
     margin-top:4px;
