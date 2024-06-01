@@ -21,6 +21,7 @@
     max-width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    text-align: center; 
 }
 
 .About .content #rectangle1 {
@@ -46,28 +47,38 @@
 .About .content #faq, .About .content #rate {
     text-align: center;
     font-size: 32px; 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .About .content #quest, .About .content #about {
-    text-align: left;
+    text-align: center; 
     font-size: 18px; 
     margin-bottom: 20px;
 }
 
-.About .content #about {
-    text-align: justify;
+.container {
+    display: flex;
+    align-items: center; 
+}
+
+.icon-container {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-bottom: 20px; 
+
 }
 
 .icon-wrapper {
-    display: inline-block; 
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin-right: 20px; 
+    display: flex; 
+    align-items: center;
 }
 
 .icon-wrapper img {
-    width: 36px;
-    height: 36px;
+    width: 36px; 
+    height: 36px; 
+    display: block; 
 }
 
 .About .content h5 {
@@ -79,12 +90,12 @@
 .About .content #first, .About .content #last {
     text-align: center;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #about-center {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

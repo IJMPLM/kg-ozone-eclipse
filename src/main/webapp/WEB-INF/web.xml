@@ -127,6 +127,16 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>DeleteFromCart</servlet-name>
+        <servlet-class>com.DeleteFromCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteFromCart</servlet-name>
+        <url-pattern>/deleteFromCart</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
         <servlet-name>BuyNow</servlet-name>
         <servlet-class>com.BuyNowServlet</servlet-class>
     </servlet>

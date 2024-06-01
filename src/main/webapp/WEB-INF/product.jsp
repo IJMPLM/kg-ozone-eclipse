@@ -145,6 +145,20 @@ window.onload = function() {
         form.submit();
     });
 };
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll("header nav ul li a");
+    
+    navLinks.forEach(function(link) {
+        link.addEventListener("click", function() {
+   
+            navLinks.forEach(function(link) {
+                link.parentElement.classList.remove("active");
+            });
+         
+            this.parentElement.classList.add("active");
+        });
+    });
+});
 </script>
 
 <%

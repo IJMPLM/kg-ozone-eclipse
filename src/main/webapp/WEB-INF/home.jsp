@@ -97,9 +97,9 @@
                 String brand = entry.getKey();
                 ArrayList<HashMap<String, String>> productsInBrand = entry.getValue();
 				
-                out.println("<div class = 'product-section'>");
+                	out.println("<div class = 'product-section'>");
 	                out.println("<h1>" + brand + "</h1>");
-	                out.println("<br><h1 id ='brand-expand'>View All</h1>");
+					out.println("<br><a href='expand?brand=" + brand + "'><h1 id ='brand-expand'>View All</h1></a>");
 	                out.println("<div class='product-list' id = '"+brand+"'>");
 
                 for (int i = 0; i < Math.min(3, productsInBrand.size()); i++) {
@@ -126,35 +126,51 @@
 
 <section class="About" id="about-button">
     <div class="content">
-       <div id="about-center">
-       	 <h6 id="faq">FAQ</h6>
-        <p id="quest">
-            1. Do we accept COD? Yes, we are accepting COD<br>
-            2. Do we ship nationwide? Yes, to any part of the Philippines.<br>
-            3. Do we accept returned items? No, if the seal is broken<br>
-        </p>
-        <h5>About Us</h5>
-        <p id="about">
-            Welcome to KG Ozone, your go-to for affordable, top-notch vape gear. We're all about quality without the hefty price tag. Plus, we're serious about responsible vaping. We only sell to adults 21 and up, ensuring a safe and legal experience for all. Join us for premium vaping solutions that won't disappoint. Experience excellence, affordability, and responsibility with KG Ozone.
-        </p>
-        <h6 id="first">Contact Us</h6>
-        <div class="icon-wrapper">
-            <a href="https://www.facebook.com/johnandrei.reyes.1/" target="_blank"><img src="<%= request.getContextPath() %>/website-images/ig.png"></a>
+        <div id="about-center">
+            <h6 id="faq">FAQ</h6>
+            <p id="quest">
+                ● Do we accept COD? Yes, we are accepting COD<br>
+                ● Do we ship nationwide? Yes, to any part of the Philippines.<br>
+                ● Do we accept returned items? No, if the seal is broken<br>
+            </p>
+            <h5>About Us</h5>
+            <p id="about">
+                Welcome to KG Ozone, your go-to for affordable, top-notch vape gear. We're all about quality without the hefty price tag. Plus, we're serious <br>about responsible vaping. We only sell to adults 21 and up, ensuring a safe and legal experience for all. Join us for premium vaping solutions<br> that won't disappoint. Experience excellence, affordability, and responsibility with KG Ozone.
+            </p>
+            <h6 id="first">Contact Us</h6>
+            <div class="icon-container">
+                <div class="icon-wrapper">
+                    <a href="https://www.facebook.com/johnandrei.reyes.1/" target="_blank"><img src="<%= request.getContextPath() %>/website-images/ig.png"></a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="https://www.instagram.com/_j.dreiii/" target="_blank"><img src="<%= request.getContextPath() %>/website-images/gmail.png"></a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="https://www.youtube.com/@johnandreireyes2035" target="_blank"><img src="<%= request.getContextPath() %>/website-images/fb.png"></a>
+                </div>
+                <div class="icon-wrapper">
+                    <a href="https://www.youtube.com/@johnandreireyes2035" target="_blank"><img src="<%= request.getContextPath() %>/website-images/tiktok.png"></a>
+                </div>
+            </div>
+            <br><h6 id="last">OZONE ©2024 Made by US THANK YOU</h6>
         </div>
-        <div class="icon-wrapper">
-            <a href="https://www.instagram.com/_j.dreiii/" target="_blank"><img src="<%= request.getContextPath() %>/website-images/gmail.png"></a>
-        </div>
-        <div class="icon-wrapper">
-            <a href="https://www.youtube.com/@johnandreireyes2035" target="_blank"><img src="<%= request.getContextPath() %>/website-images/fb.png"></a>
-        </div>
-        <div class="icon-wrapper">
-            <a href="https://www.youtube.com/@johnandreireyes2035" target="_blank"><img src="<%= request.getContextPath() %>/website-images/tiktok.png"></a>
-        </div>
-        <h6 id="last">OZONE ©2024 Made by US THANK YOU</h6>
-       </div>
     </div>
 </section>
 <script>
+		document.addEventListener("DOMContentLoaded", function() {
+		    const navLinks = document.querySelectorAll("header nav ul li a");
+		    
+		    navLinks.forEach(function(link) {
+		        link.addEventListener("click", function() {
+		   
+		            navLinks.forEach(function(link) {
+		                link.parentElement.classList.remove("active");
+		            });
+		         
+		            this.parentElement.classList.add("active");
+		        });
+		    });
+		});
         window.onload = function() {
             var section = '<%= request.getAttribute("section") %>';
             if (section && section !== 'null') {

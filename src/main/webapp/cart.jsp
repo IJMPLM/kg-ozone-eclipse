@@ -26,9 +26,9 @@
     <input type="checkbox" id="nav_check" hidden>
     <nav>
         <ul>
-            <li><a href="productList" class="active">Home</a></li>
-            <li><a href="#" onclick="history.back()">Products</a></li>
-            <li><a href="#" onclick="history.back()">About</a></li>
+            <li><a href="nav?section=home-button">Home</a></li>
+            <li><a href="nav?section=products-button">Products</a></li>
+            <li><a href="nav?section=about-button">About</a></li>
             <li>
                 <a href="#cart-button">
                     <div class="Cart"><img src="<%= request.getContextPath() %>/website-images/cart.png" alt="cart"></div>
@@ -48,6 +48,7 @@
     </label>
 	</header>
 <div class="content">
+	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 	<%
 		request.getSession();
 	    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
@@ -75,7 +76,6 @@
 			            if (orderMap.containsKey(productId)) {
 			                // Get the quantity from the orderMap
 			                int quantity = orderMap.get(productId);
-			
 			                // Calculate the total price for this product and add it to the total amount
 			                double price = Double.parseDouble(product.get("price"));
 			                totalAmount += price * quantity;
@@ -88,6 +88,12 @@
 			                        <h1 class="brand-name"><%= product.get("brand") %></h1>
 			                        <h3 class="flavor-name"><%= product.get("name") %></h3>
 			                        <h4 class="price-name">Php <%= price %> Qty: <%= quantity %> </h4>
+			                        <%
+				                        out.println("<form action='deleteFromCart' method='post'>");
+						                out.println("<input type='hidden' name='productId' value='" + product.get("id") + "'>");
+						                out.println("<input type='submit' value='Delete'>");
+						                out.println("</form>");
+			                        %>
 			                    </div>
 			                </div>
 			<%
@@ -110,5 +116,34 @@
         </div>
     </footer>
 </form>
+	<%
+	    String message = (String) session.getAttribute("message");
+	    if (message != null) {
+	        session.removeAttribute("message"); // remove the attribute so it doesn't get displayed on every page
+	%>
+	        <script>
+	            alert('<%= message %>');
+	        </script>
+	        <% request.removeAttribute("message"); %>
+	<%
+	    }
+	%>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll("header nav ul li a");
+    
+    navLinks.forEach(function(link) {
+        link.addEventListener("click", function() {
+   
+            navLinks.forEach(function(link) {
+                link.parentElement.classList.remove("active");
+            });
+         
+            this.parentElement.classList.add("active");
+        });
+    });
+});
+</script>
+	
 </body>
 </html>
