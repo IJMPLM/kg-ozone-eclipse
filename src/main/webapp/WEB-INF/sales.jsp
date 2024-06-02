@@ -15,6 +15,7 @@
             <a href="inventory">Inventory</a>
             <a href="orders">Orders</a>
             <a href="sales">Sales</a>
+            <a href="logout">Logout</a>
         </nav>
     </header>
     <a href="?period=day">Daily</a>
@@ -28,8 +29,21 @@
                 <th>Quantity Sold</th>
                 <th>Total Sales</th>
             </tr>
-            <% 
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd EEE");
+            <%
+            String period = request.getParameter("period");
+            period = period != null ? period : "day"; // Set default period to "day" if not provided
+			String pattern;
+			switch (period) {
+			    case "week":
+			        pattern = "'Week 'W 'of' MMMM yyyy";
+			        break;
+			    case "month":
+			        pattern = "MMMM yyyy";
+			        break;
+			    default:
+			        pattern = "yyyy-MM-dd EEE";
+			}
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 			List<Sale> sales = (List<Sale>) request.getAttribute("sales");
 			for (Sale sale : sales) {
 			%>
@@ -39,7 +53,7 @@
 			        <td><%=sale.getQuantity()%></td>
 			        <td><%=sale.getTotal()%></td>
 			    </tr>
-			<% 
+			<%
 			}
 			%>
         </table>

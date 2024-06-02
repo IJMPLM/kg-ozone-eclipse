@@ -147,6 +147,7 @@
 		<a href="inventory">Inventory</a>
         <a href="orders">Orders</a>
         <a href="sales">Sales</a>
+        <a href="logout">Logout</a>
 	</nav>
 </header>
  <button onclick="addProduct()">Add new product</button>

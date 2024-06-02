@@ -23,11 +23,12 @@ public class SalesLoaderServlet extends HttpServlet {
         String period = request.getParameter("period");
         period = period != null ? period : "day"; // Set default period to "day" if not provided
         String sql = "SELECT date_trunc(?, o.order_date) as period, p.name, sum(op.product_quantity) as quantity, sum(op.product_quantity * p.price) as total " +
-                "FROM orders o " +
-                "JOIN orders_product op ON o.order_id = op.order_id " +
-                "JOIN product p ON op.product_id = p.id " +
-                "GROUP BY period, p.name " +
-                "ORDER BY period, p.name";
+        	    "FROM orders o " +
+        	    "JOIN orders_product op ON o.order_id = op.order_id " +
+        	    "JOIN product p ON op.product_id = p.id " +
+        	    "WHERE o.status = 'accepted' " +
+        	    "GROUP BY period, p.name " +
+        	    "ORDER BY period, p.name";
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, period);

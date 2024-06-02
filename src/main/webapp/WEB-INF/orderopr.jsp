@@ -9,7 +9,7 @@
     <title>Order Operation</title>
 </head>
 <body>
-	<%
+    <%
     String message = (String) request.getAttribute("message");
     if (message != null) {
     %>
@@ -36,9 +36,16 @@
             <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
             <label for="status">Status:</label>
             <select id="status" name="status">
-                <option value="pending" <%=order.getStatus().equals("pending") ? "selected" : ""%>>Pending</option>
-                <option value="declined" <%=order.getStatus().equals("declined") ? "selected" : ""%>>Declined</option>
-                <option value="accepted" <%=order.getStatus().equals("accepted") ? "selected" : ""%>>Accepted</option>
+                <option value="<%=order.getStatus()%>" selected><%=order.getStatus()%></option>
+                <% if(order.getStatus().equals("accepted")) { %>
+                    <option value="voided">Voided</option>
+                    <option value="deleted">Deleted</option>
+                <% } else if(order.getStatus().equals("declined") || order.getStatus().equals("voided")) { %>
+                    <option value="deleted">Deleted</option>
+                <% } else if(order.getStatus().equals("pending")) { %>
+                    <option value="accepted">Accepted</option>
+                    <option value="declined">Declined</option>
+                <% } %>
             </select>
             <input type="submit" value="Update Status">
         </form>

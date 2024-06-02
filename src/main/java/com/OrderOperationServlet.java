@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "OrderOperation", urlPatterns = {"/orderopr"})
 public class OrderOperationServlet extends HttpServlet {

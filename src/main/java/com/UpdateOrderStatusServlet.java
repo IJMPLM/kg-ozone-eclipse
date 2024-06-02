@@ -1,5 +1,6 @@
 package com;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,17 +23,23 @@ public class UpdateOrderStatusServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("orderId");
         String status = request.getParameter("status");
-        String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                statement.setString(1, status);
-                statement.setInt(2, Integer.parseInt(orderId));
-                statement.executeUpdate();
+        if ("deleted".equals(status)) {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/deleteOrder");
+            request.setAttribute("orderId", orderId);
+            dispatcher.forward(request, response);
+        } else {
+            String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
+            try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                    statement.setString(1, status);
+                    statement.setInt(2, Integer.parseInt(orderId));
+                    statement.executeUpdate();
+                }
+            } catch (SQLException e) {
+                throw new ServletException(e);
             }
-        } catch (SQLException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "Order status updated successfully.");
+            request.getRequestDispatcher("/orderopr?orderId=" + orderId).forward(request, response);
         }
-        request.setAttribute("message", "Order status updated successfully.");
-        request.getRequestDispatcher("/orderopr?orderId=" + orderId).forward(request, response);
     }
 }
