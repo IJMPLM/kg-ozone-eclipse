@@ -23,12 +23,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Julius+Sans+One:wght@400&display=swap"/>
 </head>
 <body>
-	<% if (request.getAttribute("errorMessage") != null) { %>
-	    <script>
-	        alert("<%= request.getAttribute("errorMessage") %>");
-	    </script>
-	    <% request.removeAttribute("errorMessage"); %>
-	<% } %>
 	<%
 	    request.getSession();
 	    HashMap<String, Integer> buyNowProduct = (HashMap<String, Integer>) session.getAttribute("buyNowProduct");
@@ -38,7 +32,7 @@
 <div class="content">
 	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 	<div id="left">
-	<form id="orderForm" action="createorder" method="post" enctype="multipart/form-data">
+	<form id="orderForm" action="order" method="post" enctype="multipart/form-data">
 		<%
 		    if (productList != null) {
 		        if (buyNowProduct != null) {
@@ -90,10 +84,14 @@
 				<option value="Entrego">Entrego</option>
 				<option value="Lalamove">Lalamove</option>
 			  </select>
-				</div>
-			<input type="submit" value="ORDER" class="order-button">
-		</form>
-	</div>
+			  </div>
+			  <div id="lower">
+				 <div class="price">PHP 300</div>
+    <div class="total">TOTAL</div>
+    <button id="complete" type="submit" class="popup-complete-order">Complete Order</button><br><br>
+</div>
+</form>
+</div>
 <div id="right">
     <%
         if (productList != null) {

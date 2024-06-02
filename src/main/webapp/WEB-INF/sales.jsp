@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="com.Sale" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,18 +29,19 @@
                 <th>Total Sales</th>
             </tr>
             <% 
-            List<Sale> sales = (List<Sale>) request.getAttribute("sales");
-            for (Sale sale : sales) {
-            %>
-                <tr>
-                    <td><%=sale.getPeriod()%></td>
-                    <td><%=sale.getProductName()%></td>
-                    <td><%=sale.getQuantity()%></td>
-                    <td><%=sale.getTotal()%></td>
-                </tr>
-            <% 
-            }
-            %>
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd EEE");
+			List<Sale> sales = (List<Sale>) request.getAttribute("sales");
+			for (Sale sale : sales) {
+			%>
+			    <tr>
+			        <td><%=formatter.format(sale.getPeriod())%></td>
+			        <td><%=sale.getProductName()%></td>
+			        <td><%=sale.getQuantity()%></td>
+			        <td><%=sale.getTotal()%></td>
+			    </tr>
+			<% 
+			}
+			%>
         </table>
     </section>
 </body>

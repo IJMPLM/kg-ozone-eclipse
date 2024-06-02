@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="com.Order" %>
 <%@ page import="com.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -27,31 +28,32 @@
                 <th>Products</th>
                 <th>Total</th>
             </tr>
-            <% 
-            List<Order> orders = (List<Order>) request.getAttribute("orders");
-            for (Order order : orders) {
-            %>
-                <form id="orderForm_<%=order.getOrderId()%>" action="orderopr" method="POST">
-                    <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
-                </form>
-                <tr id="order_<%=order.getOrderId()%>" onclick="submitForm(<%=order.getOrderId()%>)">
-                    <td><%=order.getStatus()%></td>
-                    <td><%=order.getOrderDate()%></td>
-                    <td><%=order.getName()%></td>
-                    <td>
-                        <% 
-                        for (Product product : order.getProducts()) {
-                        %>
-                            <%=product.getProductName()%> x <%=product.getQuantity()%><br/>
-                        <% 
-                        }
-                        %>
-                    </td>
-                    <td><%=order.getTotal()%></td>
-                </tr>
-            <% 
-            }
-            %>
+            <%
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd EEE");
+			List<Order> orders = (List<Order>) request.getAttribute("orders");
+			for (Order order : orders) {
+			%>
+			    <form id="orderForm_<%=order.getOrderId()%>" action="orderopr" method="POST">
+			        <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
+			    </form>
+			    <tr id="order_<%=order.getOrderId()%>" onclick="submitForm(<%=order.getOrderId()%>)">
+			        <td><%=order.getStatus()%></td>
+			        <td><%=formatter.format(order.getOrderDate())%></td>
+			        <td><%=order.getName()%></td>
+			        <td>
+			            <% 
+			            for (Product product : order.getProducts()) {
+			            %>
+			                <%=product.getProductName()%> x <%=product.getQuantity()%><br/>
+			            <% 
+			            }
+			            %>
+			        </td>
+			        <td><%=order.getTotal()%></td>
+			    </tr>
+			<% 
+			}
+			%>
         </table>
 	</section>
 	<script>

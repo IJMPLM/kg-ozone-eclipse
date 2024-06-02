@@ -139,6 +139,15 @@ html, body {
 
 
 /*price and total*/
+#lower{
+    margin-top: 475px;
+}
+
+#complete {
+    margin-top: 450px;
+    margin-left: 125px;
+}
+
 .price,
 .total {
     display: inline-block;
@@ -161,6 +170,9 @@ html, body {
 }
 
 
+
+
+
 /*design for order products*/
 .product{
 	display: flex;
@@ -179,10 +191,4 @@ html, body {
 	font-family: "Julius Sans One";
 		font-size: 21px;
 		color: #ffffff;
-}
-
-#back-button img{
-    margin: 0 0 0 2rem;
-    cursor: pointer;
- 	margin-top: 2rem;
 }
