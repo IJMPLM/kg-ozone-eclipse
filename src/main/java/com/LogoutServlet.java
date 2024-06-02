@@ -13,8 +13,8 @@ public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("loginStatus", false);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login");
+		request.getSession().invalidate();
+		RequestDispatcher dispatcher = request.getRequestDispatcher("productList");
         dispatcher.forward(request, response);
 	}
 }

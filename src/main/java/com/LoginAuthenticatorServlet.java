@@ -45,8 +45,8 @@ public class LoginAuthenticatorServlet extends HttpServlet {
 	            String storedPasswordHash = resultSet.getString("password");
 	            String hashedPassword = hashPassword(password);
 	            if (hashedPassword.equals(storedPasswordHash)) {
-	                request.setAttribute("loginStatus", true);
-	        		response.sendRedirect("inventory?requery=true");
+	            	request.getSession().setAttribute("loginStatus", true);
+	                response.sendRedirect("inventory?requery=true");
 	            } else {
 	                request.setAttribute("loginStatus", false);
 	                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");

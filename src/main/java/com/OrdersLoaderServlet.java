@@ -26,11 +26,11 @@ public class OrdersLoaderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Order> orders = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "SELECT o.order_id, o.status, o.order_date, o.order_name, p.id, p.name, op.product_quantity, p.price " +
-                    "FROM orders o " +
-                    "JOIN orders_product op ON o.order_id = op.order_id " +
-                    "JOIN product p ON op.product_id = p.id " +
-                    "ORDER BY o.order_id";
+        	String sql = "SELECT o.order_id, o.status, o.order_date, o.order_name, p.id, p.name, op.product_quantity, p.price " +
+        	        "FROM orders o " +
+        	        "JOIN orders_product op ON o.order_id = op.order_id " +
+        	        "JOIN product p ON op.product_id = p.id " +
+        	        "ORDER BY o.order_date DESC";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {

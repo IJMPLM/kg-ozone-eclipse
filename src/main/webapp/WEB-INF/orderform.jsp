@@ -32,7 +32,7 @@
 <div class="content">
 	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 	<div id="left">
-	<form id="orderForm" action="order" method="post" enctype="multipart/form-data">
+	<form id="orderForm" action="createorder" method="post" enctype="multipart/form-data">
 		<%
 		    if (productList != null) {
 		        if (buyNowProduct != null) {

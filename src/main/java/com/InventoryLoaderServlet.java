@@ -30,7 +30,12 @@ public class InventoryLoaderServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayList<HashMap<String, String>> productList;
         HashMap<String, HashMap<String, String>> allChanges;
-
+        Boolean loginStatus = (Boolean) session.getAttribute("loginStatus");
+        if (loginStatus == null || !loginStatus) {
+            // If not, redirect to the login page
+            response.sendRedirect("login");
+            return;
+        }
         // Check if the request attribute 'requery' is set to true
         String requeryStatus = request.getParameter("requery");
         if (requeryStatus != null && requeryStatus.equals("true")) {

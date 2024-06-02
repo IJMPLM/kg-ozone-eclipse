@@ -37,6 +37,9 @@ public class AddToCartServlet extends HttpServlet {
 
         // Store the order map in the session
         orderSession.setAttribute("orderMap", orderMap);
+        
+        // Remove the buyNowProduct from the session
+        orderSession.removeAttribute("buyNowProduct");
 
         System.out.println("Order Added:" + productId + " Quantity: " + quantity);
 
