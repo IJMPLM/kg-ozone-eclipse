@@ -91,7 +91,7 @@
 			                        <%
 				                        out.println("<form action='deleteFromCart' method='post'>");
 						                out.println("<input type='hidden' name='productId' value='" + product.get("id") + "'>");
-						                out.println("<input type='submit' value='Delete'>");
+						                out.println("<input class='delete-button' type='submit' value='Delete' class='delete-button'>");
 						                out.println("</form>");
 			                        %>
 			                    </div>

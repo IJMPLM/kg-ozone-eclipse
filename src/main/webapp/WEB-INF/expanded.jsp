@@ -51,8 +51,8 @@
         <div></div>
     </label>
 	</header>
+	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
     <section class="Products" id="products-button">
-    <div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
         <div class="content">
             <%
 	            String brand = request.getParameter("brand");
@@ -64,7 +64,7 @@
 	
 	            	// Generate product item
 	            	
-	            	out.println("<a href='/product?id=" + product.get("id") + "'>");
+	            	out.println("<a href='product?id=" + product.get("id") + "'>");
 	            	out.println("<div class='product-item' id='product-list-" + product.get("id") + "'>");
 	            	out.println("<img src='" + imgSrc + "' alt='" + product.get("name") + "'>");
 	            	out.println("<div class='flavor' id='brandA-flavor-" + product.get("id") + "'>" + product.get("name") + "</div>");

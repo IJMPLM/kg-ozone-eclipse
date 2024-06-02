@@ -180,3 +180,9 @@ html, body {
 		font-size: 21px;
 		color: #ffffff;
 }
+
+#back-button img{
+    margin: 0 0 0 2rem;
+    cursor: pointer;
+ 	margin-top: 2rem;
+}
