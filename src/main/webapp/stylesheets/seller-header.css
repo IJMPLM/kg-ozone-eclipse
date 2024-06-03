@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+header a{
+	text-decoration: none;
+	flex-direction: row;
+}
+
+nav {
+	display: flex;
+	gap: 3rem;
+}

@@ -10,6 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/seller-header.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/order.css">
 </head>
 <body>
     <header>
@@ -34,9 +36,6 @@
 			List<Order> orders = (List<Order>) request.getAttribute("orders");
 			for (Order order : orders) {
 			%>
-			    <form id="orderForm_<%=order.getOrderId()%>" action="orderopr" method="POST">
-			        <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
-			    </form>
 			    <tr id="order_<%=order.getOrderId()%>" onclick="submitForm(<%=order.getOrderId()%>)">
 			        <td><%=order.getStatus()%></td>
 			        <td><%=formatter.format(order.getOrderDate())%></td>
