@@ -159,13 +159,13 @@ html, body {
 
 .total {
     font-size: 38px;
-    margin-top: 20px;
+    margin-top: 110px;
 }
 
 .price {
     position: relative;
-    left: 150px;
-    top: 55px;
+    left: 165px;
+    top: 145px;
     font-size: 26px;
 }
 
@@ -191,4 +191,10 @@ html, body {
 	font-family: "Julius Sans One";
 		font-size: 21px;
 		color: #ffffff;
+}
+
+.back-button{
+	position: absolute;
+    top: 10px;
+    left: 10px;
 }

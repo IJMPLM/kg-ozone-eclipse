@@ -29,8 +29,37 @@
 	    HashMap<String, Integer> orderMap = (HashMap<String, Integer>) session.getAttribute("orderMap");
 	    ArrayList<HashMap<String, String>> productList = (ArrayList<HashMap<String, String>>) session.getAttribute("productList");
 	%>
+	<%
+	    // Initialize total amount
+	    double totalAmount = 0;
+	
+	    if (productList != null) {
+	        if (buyNowProduct != null) {
+	            // Calculate total for the "Buy Now" product
+	            String productId = buyNowProduct.keySet().iterator().next();
+	            int quantity = buyNowProduct.get(productId);
+	            for (HashMap<String, String> product : productList) {
+	                if (product.get("id").equals(productId)) {
+	                    double price = Double.parseDouble(product.get("price"));
+	                    totalAmount += price * quantity;
+	                }
+	            }
+	        } else if (orderMap != null) {
+	            // Calculate total for all products in the orderMap
+	            for (HashMap<String, String> product : productList) {
+	                String productId = product.get("id");
+	                if (orderMap.containsKey(productId)) {
+	                    int quantity = orderMap.get(productId);
+	                    double price = Double.parseDouble(product.get("price"));
+	                    totalAmount += price * quantity;
+	                }
+	            }
+	        }
+	    }
+	%>
+	
+<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 <div class="content">
-	<div class="back-button" id="back-button" onclick="history.back()"><img src="<%= request.getContextPath() %>/website-images/back.png" alt="back"></div>
 	<div id="left">
 	<form id="orderForm" action="createorder" method="post" enctype="multipart/form-data">
 		<%
@@ -86,7 +115,7 @@
 			  </select>
 			  </div>
 			  <div id="lower">
-				 <div class="price">PHP 300</div>
+				 <div class="price">PHP <%= totalAmount %></div>
     <div class="total">TOTAL</div>
     <button id="complete" type="submit" class="popup-complete-order">Complete Order</button><br><br>
 </div>
