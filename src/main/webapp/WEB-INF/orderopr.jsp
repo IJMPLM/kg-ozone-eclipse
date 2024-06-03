@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Operation</title>
+    
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/seller-header.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/orderopr.css">
 </head>
 <body>
     <%
@@ -22,9 +25,10 @@
     %>
     <header>
         <nav>
+            <a href="orders" class="active">Back to Orders</a>
             <a href="inventory">Inventory</a>
-            <a href="orders">Orders</a>
             <a href="sales">Sales</a>
+            <a href="logout">Logout</a>
         </nav>
     </header>
     <section id="content">
@@ -38,18 +42,17 @@
             <select id="status" name="status">
                 <option value="<%=order.getStatus()%>" selected><%=order.getStatus()%></option>
                 <% if(order.getStatus().equals("accepted")) { %>
-                    <option value="voided">Voided</option>
-                    <option value="deleted">Deleted</option>
+                    <option value="voided">voided</option>
+                    <option value="deleted">deleted</option>
                 <% } else if(order.getStatus().equals("declined") || order.getStatus().equals("voided")) { %>
                     <option value="deleted">Deleted</option>
                 <% } else if(order.getStatus().equals("pending")) { %>
-                    <option value="accepted">Accepted</option>
-                    <option value="declined">Declined</option>
+                    <option value="accepted">accepted</option>
+                    <option value="declined">declined</option>
                 <% } %>
             </select>
             <input type="submit" value="Update Status">
         </form>
-        <h2>Order ID: <%=order.getOrderId()%></h2>
 		<p>Name: <%=order.getName()%></p>
 		<p>Contact: <%=order.getContact()%></p>
 		<p>Address: <%=order.getAddress()%></p>

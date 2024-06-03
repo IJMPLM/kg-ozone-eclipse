@@ -1,11 +1,17 @@
 @charset "UTF-8";
 
-header a{
+a{
 	text-decoration: none;
 	flex-direction: row;
+	color: black;
 }
 
 nav {
 	display: flex;
 	gap: 3rem;
+}
+
+.active {
+    color: 
+red;
 }

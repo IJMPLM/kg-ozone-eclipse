@@ -17,7 +17,7 @@
     <header>
 	<nav>
 		<a href="inventory">Inventory</a>
-        <a href="orders">Orders</a>
+        <a href="orders" class="active">Orders</a>
         <a href="sales">Sales</a>
         <a href="logout">Logout</a>
 	</nav>
@@ -36,6 +36,9 @@
 			List<Order> orders = (List<Order>) request.getAttribute("orders");
 			for (Order order : orders) {
 			%>
+				<form id="orderForm_<%=order.getOrderId()%>" action="orderopr" method="POST">
+			        <input type="hidden" name="orderId" value="<%=order.getOrderId()%>">
+			    </form>
 			    <tr id="order_<%=order.getOrderId()%>" onclick="submitForm(<%=order.getOrderId()%>)">
 			        <td><%=order.getStatus()%></td>
 			        <td><%=formatter.format(order.getOrderDate())%></td>

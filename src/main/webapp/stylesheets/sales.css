@@ -1,160 +1,23 @@
+@charset "UTF-8";
+
 body {
-    font-family: "Julius Sans One-Regular", Regular;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #262626;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin:2rem;
 }
 
-header {
-    color: #FFCD38;
-    background-color: #121212;
-    padding: 10px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    z-index: 2;
+table {
+    border-collapse: collapse;
 }
-
-.navbar, .navbar2 {
-    background-color: #1A1A1A;
-    padding-top: 70px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+th, td {
+    padding: 0 50px 0 50px;
 }
-
-.navbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    padding: 10px 0;
+tr {
+    border: 1px solid black;
 }
-
-.navbar2 {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    padding: 10px 0;
-    background-color: #1A1A1A;
-}
-
-.navbar ul, .navbar2 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.navbar ul li, .navbar2 ul li {
-    margin: 20px 0;
-}
-
-.navbar ul li a, .navbar2 ul li a {
-    font-size: 10px;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-}
-
-.navbar ul li a:hover, .navbar2 ul li a:hover {
-    background-color: #fff;
-    color: #1A1A1A;
-}
-
-.content {
-    padding: 20px;
-    color: #fff;
-    background-color: #262626;
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid #fff; 
-    margin: 0px 0;
-    width: 129.9%; 
-}
-
-.SalesMenu, .SalesStats {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 30px 0;
-    font-size: 18px;
-}
-
-.word, .weeksale {
-    flex: 1;
-    margin: 10px;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .navbar ul li a{
-        font-size: 50px;
-    }
-    .navbar2 ul li a {
-        font-size: 30px;
-    }
-
-    .SalesMenu, .SalesStats {
-        font-size: 24px;
-    }
-
-    .word, .weeksale {
-        margin: 20px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .navbar {
-        flex-direction: column;
-        width: 300px;
-        position: fixed;
-        height: calc(100% - 50px);
-    }
-
-    .navbar2 {
-        flex-direction: column;
-        width: 325px;
-        position: fixed;
-        top: 330px;
-        right: 0;
-        height: calc(100% - 300px);
-    }
-
-    .navbar ul{
-        flex-direction: column;
-        align-items: center;
-        top: 0;
-        padding-bottom: 365px;
-    }
-
-    .navbar2 ul{
-        flex-direction: column;
-        align-items: center;
-        top: 0;
-        padding-bottom: 350px;
-    }
-
-    .content {
-        margin-left: 280px;
-        margin-right: 320px;
-        padding: 20px;
-    }
-
-    .Title{
-        margin-left: 70px;
-    }
-
-    .SalesMenu, .SalesStats {
-        justify-content: flex-start;
-    }
-
-    .weeksale {
-        position: static;
-    }
+a.active {
+    color: red;
 }
