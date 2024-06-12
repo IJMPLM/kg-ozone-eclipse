@@ -55,7 +55,7 @@ html, body {
 }
 
 /*courier design*/
-#courier{
+#courier, #region, #city{
     text-align: center;
     display: inline-block;
     width: 1000px;
@@ -73,7 +73,8 @@ html, body {
 .type-contact::placeholder,
 .type-address::placeholder,
 .type-region::placeholder,
-.type-barangay::placeholder{
+.type-barangay::placeholder,
+.type-lot-and-street::placeholder{
     color: rgba(0, 0, 0, 0.338); 
     font-size: 18px;
     font-style: italic;
@@ -85,7 +86,8 @@ html, body {
 .type-address,
 .type-region,
 .button-payment-file,
-.type-barangay{
+.type-barangay,
+.type-lot-and-street{
     padding: 12px;
     font-size: 20px;
     font-family: Arial, sans-serif;
@@ -140,11 +142,11 @@ html, body {
 
 /*price and total*/
 #lower{
-    margin-top: 475px;
+    margin-top: 525px;
 }
 
 #complete {
-    margin-top: 450px;
+    margin-top: 500px;
     margin-left: 125px;
 }
 
@@ -159,13 +161,13 @@ html, body {
 
 .total {
     font-size: 38px;
-    margin-top: 110px;
+    margin-top: 115px;
 }
 
 .price {
     position: relative;
-    left: 165px;
-    top: 145px;
+    left: 150px;
+    top: 150px;
     font-size: 26px;
 }
 

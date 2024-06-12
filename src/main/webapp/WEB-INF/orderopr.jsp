@@ -42,9 +42,9 @@
         <h2>Order ID: <%=order.getOrderId()%></h2>
 		<p>Name: <%=order.getName()%></p>
 		<p>Contact: <%=order.getContact()%></p>
-		<p>Address: <%=order.getAddress()%></p>
 		<p>Region: <%=order.getRegion()%></p>
-		<p>Barangay: <%=order.getBarangay()%></p>
+		<p>City: <%=order.getBarangay()%></p>
+		<p>Brgy., Lot, & Street: <%=order.getAddress()%></p>
 		<p>Courier: <%=order.getCourier()%></p>
         <table>
             <tr>
@@ -53,7 +53,9 @@
                 <th>Price</th>
             </tr>
             <% 
+            double total = 0;
             for (Product product : order.getProducts()) {
+            	total += product.getPrice() * product.getQuantity();
             %>
                 <tr>
                     <td><%=product.getProductName()%></td>
@@ -64,6 +66,7 @@
             }
             %>
         </table>
+        <p id="total">Total: <%=total%></p>
     </section>
     <section id = "statusControls">
     <form action="updateOrderStatus" method="POST">
