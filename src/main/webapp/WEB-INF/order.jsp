@@ -14,13 +14,17 @@
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/stylesheets/order.css">
 </head>
 <body>
-    <header>
-	<nav>
-		<a href="inventory">Inventory</a>
-        <a href="orders" class="active">Orders</a>
-        <a href="sales">Sales</a>
-        <a href="logout">Logout</a>
-	</nav>
+<header>
+    <div id="logo">
+        <img src="<%= request.getContextPath() %>/website-images/logo.png" alt="Logo">
+    </div>
+    
+    <nav>
+        <a id="one" href="inventory" >Inventory</a>
+        <a id="two"  href="orders" class="active">Orders</a>
+        <a id="three" href="sales">Sales</a>
+        <a id="four" href="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+    </nav>
 </header>
 	<section id="content">
 		<table>

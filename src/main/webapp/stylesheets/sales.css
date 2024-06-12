@@ -11,13 +11,43 @@ body {
 
 table {
     border-collapse: collapse;
-}
+	 background-color: white;
+	display: flex;
+}	
 th, td {
-    padding: 0 50px 0 50px;
+    padding: 10px 50px 10px 50px;
 }
 tr {
-    border: 1px solid black;
+    border: 2px solid black;
+	text-align: center;
 }
-a.active {
-    color: red;
+
+table tr:hover {
+	  cursor: pointer;
+    background-color: #333333;
+	  color: white;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#content div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#dailyToggle, #weeklyToggle, #monthlyToggle{
+  padding: 1rem;
+	margin-top: 1rem;
+	color: black;
+	font-size: 2rem;
+	cursor: pointer;
+	background-color: #E8e4c9;
+	width:100%;
+	border-radius: 10px 10px 0px 0px;
+	border: solid white 1px;
 }

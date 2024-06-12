@@ -93,7 +93,7 @@
 	    <form>
 	        <div class="quantity-input">
 	            <button type="button" onclick="decreaseValue()" id="decrease">-</button>
-	            <input type="number" class="quantity" id="quantity" value="1" min="1" name="quantity"/>
+	            <input type="number" class="quantity" id="quantity" value="1" min="1" max="<%= selectedProduct.get("stock") %>"  name="quantity"/>
 	            <button type="button" onclick="increaseValue()" id="increase">+</button>
 	            <div class="stock">Stock: <%= selectedProduct.get("stock") %></div>
 	        </div>
@@ -127,8 +127,34 @@ function increaseValue() {
     document.getElementById('quantity').value = value;
 }
 
+document.getElementById('quantity').addEventListener('input', function (e) {
+    var input = e.target;
+    var max = parseInt(input.max);
+    var min = parseInt(input.min);
+    var value = parseInt(input.value);
+
+    if (value > max) {
+        input.value = max;
+    } else if (value < min) {
+        input.value = min;
+    }
+});
+
 //make target of form action dynamic
 window.onload = function() {
+    var inputs = document.querySelectorAll('input');
+    inputs.forEach(function(input) {
+        // Exclude the 'ADD TO CART' and 'BUY NOW' buttons
+        if (input.id !== 'addtocart-button' && input.id !== 'buynow-button') {
+            input.addEventListener('keydown', function(event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    input.blur(); // remove focus from the input field
+                }
+            });
+        }
+    });
+
     document.getElementById('addtocart-button').addEventListener('click', function(e) {
         e.preventDefault();
         var form = this.closest('form');
@@ -145,21 +171,23 @@ window.onload = function() {
         form.submit();
     });
 };
+
 document.addEventListener("DOMContentLoaded", function() {
     const navLinks = document.querySelectorAll("header nav ul li a");
-    
+
     navLinks.forEach(function(link) {
         link.addEventListener("click", function() {
-   
+
             navLinks.forEach(function(link) {
                 link.parentElement.classList.remove("active");
             });
-         
+
             this.parentElement.classList.add("active");
         });
     });
 });
 </script>
+
 
 <%
     String message = (String) session.getAttribute("message");

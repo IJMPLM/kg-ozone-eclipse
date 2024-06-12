@@ -11,7 +11,59 @@ nav {
 	gap: 3rem;
 }
 
+header {
+    background: black;
+    width: 100%;
+    position: fixed;
+    top: 0; /* Ensure the header is at the top */
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center;
+    padding: 10px 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+header #logo {
+ 
+    width: auto;
+    margin-bottom: 5px;
+
+}
+
+#logo img{
+    height: 70px;
+}
+
+header .nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .nav #one, 
+header .nav #two, 
+header .nav #three, 
+header .nav #four {
+    color: #ffffff;
+    display: flex; /* Enable flexbox properties */
+    align-items: center;
+    justify-content: center; /* Center elements horizontally */
+    text-align: center;
+    flex: 1; /* Distribute space evenly */
+}
+
+header #one, #two, #three, #four {
+    color: #ffffff; /* Corrected property name */
+}
+
 .active {
     color: 
-red;
+    #FFCD38 !important;
+}
+
+body {
+	padding-top: 7rem;
+    background-color: #FFCD38;
 }

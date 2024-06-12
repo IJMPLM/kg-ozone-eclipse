@@ -16,13 +16,13 @@
 </head>
 
 					<% 
-						String loginStatus = "";
+					    String loginStatus = "Not logged in";
 					    Object loginStatusObj = request.getAttribute("loginStatus");
-						if(loginStatusObj==null || !(Boolean)loginStatusObj){
-							loginStatus = "Not logged in";
-						} else {
-							loginStatus = "Logged in";
-						}
+					    if(loginStatusObj instanceof Boolean && (Boolean)loginStatusObj){
+					        loginStatus = "Logged in";
+					    } else if(loginStatusObj instanceof String){
+					        loginStatus = (String) loginStatusObj;
+					    }
 					%>
 <body>
     <header>
@@ -46,11 +46,24 @@
             <input type="text" placeholder="Enter Your Unique ID Here..." name="username">
             <h2>Enter Password</h2>
             <input type="password" placeholder="Enter Your Password Here..." name="password">
+            <div>Login status: <%=loginStatus %></div>  
             <input id="cancel-button" type="button" value="Cancel" onclick="history.back()"/> 
-            <input  id="confirm-button" type="submit" value="Confirm">    
+            <input  id="confirm-button" type="submit" value="Confirm">  
         </form>
         </div>
     </div>
-		            <div>Login status: <%=loginStatus %></div>
+	<script>
+	window.onload = function() {
+	    var inputs = document.querySelectorAll('input');
+	    inputs.forEach(function(input) {
+	        input.addEventListener('keydown', function(event) {
+	            if (event.keyCode == 13) {
+	                event.preventDefault();
+	                input.blur(); // remove focus from the input field
+	            }
+	        });
+	    });
+	}
+	</script>
 </body>
 </html>

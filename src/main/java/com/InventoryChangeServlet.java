@@ -72,7 +72,7 @@ public class InventoryChangeServlet extends HttpServlet {
             System.out.println("Changes saved in session: " + allChanges);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/inventory.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("commit");
         dispatcher.forward(request, response);
     }
 }

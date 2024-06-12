@@ -7,20 +7,33 @@
 <meta charset="UTF-8">
 <title>admin-inventory</title>
 <script>
-    function toggleEdit(id) {
-        var row = document.getElementById('product' + id);
-        var inputs = row.getElementsByTagName('input');
-        for(var i = 0; i < inputs.length; i++) {
-            inputs[i].readOnly = !inputs[i].readOnly;
-        }
-        var imgButton = document.getElementById('imgButton' + id);
-        if (imgButton.style.display === "none") {
-            imgButton.style.display = "block";
-        } else {
-            imgButton.style.display = "none";
-            removeImageForms(id);
-        }
-    }
+	function toggleEdit(id) {
+	    var row = document.getElementById('product' + id);
+	    var inputs = row.getElementsByTagName('input');
+	    for(var i = 0; i < inputs.length; i++) {
+	        inputs[i].readOnly = !inputs[i].readOnly;
+	        if (inputs[i].type === 'number' && !inputs[i].readOnly) {
+	            inputs[i].addEventListener('input', function (e) {
+	                var max = parseInt(e.target.getAttribute('max'));
+	                var min = parseInt(e.target.getAttribute('min'));
+	                var value = parseInt(e.target.value);
+	
+	                if (value > max) {
+	                    e.target.value = max;
+	                } else if (value < min) {
+	                    e.target.value = min;
+	                }
+	            });
+	        }
+	    }
+	    var imgButton = document.getElementById('imgButton' + id);
+	    if (imgButton.style.display === "none") {
+	        imgButton.style.display = "block";
+	    } else {
+	        imgButton.style.display = "none";
+	        removeImageForms(id);
+	    }
+	}
 
     function addProduct() {
         var form = document.createElement('form');
@@ -139,20 +152,21 @@
 </head>
 <body>
 <header>
+    <div id="logo">
+        <img src="<%= request.getContextPath() %>/website-images/logo.png" alt="Logo">
+    </div>
+    
     <nav>
-        <a href="inventory" class="active">Inventory</a>
-        <a href="orders">Orders</a>
-        <a href="sales">Sales</a>
-        <a href="logout">Logout</a>
+        <a id="one" href="inventory" class="active">Inventory</a>
+        <a id="two"  href="orders">Orders</a>
+        <a id="three" href="sales">Sales</a>
+        <a id="four" href="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
     </nav>
 </header>
-<section class="inventory-header">
-    <button onclick="addProduct()">Add new product</button>
-    <form action="commit" method="POST">
-        <button type="submit">Save All Changes</button>
-    </form>
-</section>
 <section class="inventory-body">
+	<section class="inventory-header">
+	    <button onclick="addProduct()">Add new product</button>
+	</section>
     <table>
         <tr>
             <th>Item-Name</th>
@@ -176,12 +190,12 @@
                 <td><input type="text" name="category" value="<%= product.get("category") %>" readonly></td>
                 <td><input type="text" name="description" value="<%= product.get("description") %>" readonly></td>
                 <td><input type="text" name="brand" value="<%= product.get("brand") %>" readonly></td>
-                <td><input type="number" name="stock" value="<%= product.get("stock") %>" readonly></td>
-                <td><input type="number" name="price" value="<%= product.get("price") %>" readonly></td>
+                <td><input type="number" name="stock" value="<%= product.get("stock") %>" min="0" max="9999" readonly></td>
+                <td><input type="number" name="price" value="<%= product.get("price") %>" min="0" max="999999" readonly></td>
                 <td>
                     <button type="button" onclick="toggleEdit('<%= product.get("id") %>')">Edit</button>
-                    <button type="submit">Save</button>
-                    <button type="submit" formaction="deleteProduct">Delete</button>
+                    <button type="submit" onclick="return confirm('Are you sure you want to save your changes?')">Save</button>
+					<button type="submit" formaction="deleteProduct" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                     <button id="imgButton<%= product.get("id") %>" style="display:none;" type="button" onclick="createImageForms('<%= product.get("id") %>')">Add/Delete Images</button>
                 </td>
             </form>

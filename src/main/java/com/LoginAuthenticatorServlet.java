@@ -48,12 +48,12 @@ public class LoginAuthenticatorServlet extends HttpServlet {
 	            	request.getSession().setAttribute("loginStatus", true);
 	                response.sendRedirect("inventory?requery=true");
 	            } else {
-	                request.setAttribute("loginStatus", false);
+	                request.setAttribute("loginStatus", "Incorrect password/username");
 	                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
 	                dispatcher.forward(request, response);
 	            }
 	        } else {
-	            request.setAttribute("loginStatus", false);
+	            request.setAttribute("loginStatus", "Incorrect password/username");
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
 	            dispatcher.forward(request, response);
 	        }
